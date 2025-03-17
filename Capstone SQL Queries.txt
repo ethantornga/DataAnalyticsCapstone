@@ -1,0 +1,114 @@
+## CREATE INITIAL TABLE
+
+CREATE TABLE 'mba_decision' 
+('Person_ID' INTEGER,
+ 'Age' INTEGER,
+ 'Gender' TEXT,
+ 'Undergraduate_Major' TEXT,
+ 'Undergraduate_GPA' REAL,
+ 'Years_of_Work_Experience' INTEGER,
+ 'Current_Job_Title' TEXT,
+ 'Annual_Salary_(Before_MBA)' INTEGER,
+ 'Has_Management_Experience' TEXT,
+ 'GRE/GMAT_Score' INTEGER,
+ 'Undergrad_University_Ranking' INTEGER,
+ 'Entrepreneurial_Interest' REAL,
+ 'Networking_Importance' REAL,
+ 'MBA_Funding_Source' TEXT,
+ 'Desired_Post-MBA_Role' TEXT,
+ 'Expected_Post-MBA_Salary' INTEGER,
+ 'Location_Preference_(Post-MBA)' TEXT,
+ 'Reason_for_MBA' TEXT,
+ 'Online_vs._On-Campus_MBA' TEXT,
+ 'Decided_to_Pursue_MBA?' TEXT);
+INSERT INTO 'mba_decision' 
+ ('Person_ID',
+  'Age',
+  'Gender',
+  'Undergraduate_Major',
+  'Undergraduate_GPA',
+  'Years_of_Work_Experience',
+  'Current_Job_Title',
+  'Annual_Salary_(Before_MBA)',
+  'Has_Management_Experience',
+  'GRE/GMAT_Score',
+  'Undergrad_University_Ranking',
+  'Entrepreneurial_Interest',
+  'Networking_Importance',
+  'MBA_Funding_Source',
+  'Desired_Post-MBA_Role',
+  'Expected_Post-MBA_Salary',
+  'Location_Preference_(Post-MBA)',
+  'Reason_for_MBA',
+  'Online_vs._On-Campus_MBA',
+  'Decided_to_Pursue_MBA?'
+ ) VALUES 
+
+
+## CREATE UPDATED TABLE
+
+CREATE TABLE 'mba_decision_new' 
+('Person_ID' INTEGER,
+ 'Age' INTEGER,
+ 'Gender' TEXT,
+ 'Undergraduate_Major' TEXT,
+ 'Undergraduate_GPA' REAL,
+ 'Years_of_Work_Experience' INTEGER,
+ 'Current_Job_Title' TEXT,
+ 'Annual_Salary_(Before_MBA)' INTEGER,
+ 'Has_Management_Experience' TEXT,
+ 'GRE/GMAT_Score' INTEGER,
+ 'Undergrad_University_Ranking' INTEGER,
+ 'MBA_Funding_Source' TEXT,
+ 'Desired_Post-MBA_Role' TEXT,
+ 'Expected_Post-MBA_Salary' INTEGER,
+ 'Location_Preference_(Post-MBA)' TEXT,
+ 'Reason_for_MBA' TEXT,
+ 'Online_vs._On-Campus_MBA' TEXT,
+ 'Decided_to_Pursue_MBA?' TEXT);
+ 
+INSERT INTO 'mba_decision_new' 
+('Person_ID',
+ 'Age',
+ 'Gender',
+ 'Undergraduate_Major',
+ 'Undergraduate_GPA',
+ 'Years_of_Work_Experience',
+ 'Current_Job_Title',
+ 'Annual_Salary_(Before_MBA)',
+ 'Has_Management_Experience',
+ 'GRE/GMAT_Score',
+ 'Undergrad_University_Ranking',
+ 'MBA_Funding_Source',
+ 'Desired_Post-MBA_Role',
+ 'Expected_Post-MBA_Salary',
+ 'Location_Preference_(Post-MBA)',
+ 'Reason_for_MBA',
+ 'Online_vs._On-Campus_MBA',
+ 'Decided_to_Pursue_MBA?'
+) VALUES 
+
+
+## Salary Difference
+SELECT 
+    *, 
+    expected_post-mba_salary - annual_salary_(before_mba) AS salary_difference
+FROM mba_decision_new;
+
+ALTER TABLE mba_decision_new ADD COLUMN salary_difference REAL;
+
+UPDATE mba_decision_new
+SET salary_difference = expected_post-mba_salary - annual_salary_(before_mba);
+
+
+
+## % of Life Working
+SELECT 
+    *, 
+    years_of_work_experience / age AS percent_of_life_working
+FROM mba_decision_new;
+
+ALTER TABLE mba_decision_new ADD COLUMN percent_of_life_working REAL;
+
+UPDATE mba_decision_new
+SET percent_of_life_working = years_of_work_experience / age;
